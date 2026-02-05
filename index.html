@@ -2,15 +2,15 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REZA_SYSTEM_v3.0 | Mobile Fixed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>REZA_SYSTEM_v5.1 | Terminal Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --terminal-green: #00ff41;
             --terminal-blue: #00d2ff;
             --bg-color: #050505;
-            --panel-bg: rgba(20, 20, 25, 0.95);
+            --panel-bg: rgba(20, 20, 25, 0.98);
             --text-dim: #8892b0;
             --text-bright: #ccd6f6;
         }
@@ -21,13 +21,14 @@
             background-color: var(--bg-color);
             color: var(--text-bright);
             line-height: 1.6;
-            padding: 10px;
+            padding: 5px;
             overflow-x: hidden;
             background-image: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%);
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 5px; }
+        .container { width: 100%; max-width: 1000px; margin: 0 auto; padding: 10px; }
 
+        /* Terminal Window */
         .terminal {
             background: var(--panel-bg);
             border: 1px solid #333;
@@ -41,22 +42,41 @@
             padding: 12px 15px;
             display: flex;
             align-items: center;
-            gap: 10px;
             border-bottom: 1px solid #333;
         }
 
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; margin-left: 6px; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
 
         .content { padding: 20px; }
 
-        .cmd { color: var(--terminal-green); font-weight: bold; margin-bottom: 10px; display: block; font-size: 0.85rem; }
+        /* ELITE SECTION - TERMINAL STYLE */
+        .elite-header {
+            background: rgba(0, 210, 255, 0.03);
+            border: 1px solid var(--terminal-blue);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .harvard-title {
+            color: var(--terminal-blue);
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
+        }
+
+        /* Typography */
+        .cmd { color: var(--terminal-green); font-weight: bold; font-size: 0.8rem; margin-bottom: 10px; display: block; }
         .cmd::before { content: "reza@root:~$ "; }
 
-        h1 { font-size: clamp(1.6rem, 7vw, 2.5rem); margin-bottom: 5px; color: #fff; text-shadow: 0 0 10px var(--terminal-blue); }
-        .subtitle { color: var(--terminal-blue); font-size: 0.85rem; margin-bottom: 30px; display: block; line-height: 1.4; }
+        h1 { font-size: clamp(1.5rem, 8vw, 2.5rem); margin-bottom: 5px; color: #fff; text-shadow: 0 0 10px var(--terminal-blue); }
+        .subtitle { color: var(--terminal-blue); font-size: 0.85rem; margin-bottom: 25px; display: block; line-height: 1.4; border-right: 2px solid var(--terminal-blue); padding-right: 10px; }
 
-        /* Grid System - Mobile First */
+        /* Grid - Default Mobile (1 Column) */
         .grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
 
         .card {
@@ -66,46 +86,47 @@
             padding: 15px;
             transition: 0.3s;
         }
-        .card:hover { border-color: var(--terminal-blue); background: rgba(0, 210, 255, 0.05); }
+        .card:hover { border-color: var(--terminal-blue); }
 
         h2 { font-size: 1.1rem; margin-bottom: 15px; color: var(--terminal-blue); display: flex; align-items: center; gap: 10px; }
 
-        .tag {
-            display: inline-block;
-            border: 1px solid var(--terminal-green);
-            color: var(--terminal-green);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            margin: 3px;
-        }
+        .tag { border: 1px solid var(--terminal-green); color: var(--terminal-green); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin: 3px; display: inline-block; }
 
         .project-item { margin-bottom: 15px; padding-right: 12px; border-right: 2px solid #333; }
-        .project-item:hover { border-right-color: var(--terminal-green); }
         .project-item strong { color: #fff; font-size: 0.95rem; display: block; }
-        .project-item p { font-size: 0.8rem; color: var(--text-dim); margin-top: 5px; text-align: justify; }
+        .project-item p { font-size: 0.8rem; color: var(--text-dim); margin-top: 4px; }
 
-        .exp-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        /* Contact Info - Mobile Friendly */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 25px;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
 
-        /* Desktop Adjustments */
+        /* Desktop Mode (768px and up) */
         @media (min-width: 768px) {
             .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .full { grid-column: span 2; }
-            .exp-grid { grid-template-columns: 1fr 1fr; }
+            .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
             .content { padding: 40px; }
-            .terminal-bar { padding: 12px 20px; }
+            .contact-info { flex-direction: row; justify-content: space-around; }
         }
 
         .btn {
-            display: block; width: 100%; padding: 15px; background: var(--terminal-green); color: #000;
-            text-align: center; text-decoration: none; font-weight: bold; border-radius: 8px; margin-top: 30px;
+            display: block; width: 100%; padding: 18px; background: var(--terminal-green); color: #000;
+            text-align: center; text-decoration: none; font-weight: bold; border-radius: 10px; margin-top: 30px;
             transition: 0.3s; text-transform: uppercase; font-size: 0.9rem;
         }
-        .btn:hover { box-shadow: 0 0 20px var(--terminal-green); transform: scale(1.01); }
+        .btn:hover { box-shadow: 0 0 20px var(--terminal-green); }
 
         .scanline {
             width: 100%; height: 2px; background: rgba(0, 255, 65, 0.05);
-            position: fixed; top: 0; left: 0; pointer-events: none; animation: scan 4s linear infinite;
+            position: fixed; top: 0; left: 0; pointer-events: none; animation: scan 4s linear infinite; z-index: 10;
         }
         @keyframes scan { 0% { top: -5%; } 100% { top: 100%; } }
     </style>
@@ -117,47 +138,36 @@
 <div class="container">
     <div class="terminal">
         <div class="terminal-bar">
-            <div class="dot red"></div>
-            <div class="dot yellow"></div>
-            <div class="dot green"></div>
+            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
             <span style="font-size: 0.65rem; color: #555; margin-right: auto;">root@reza-mainframe: ~</span>
         </div>
 
         <div class="content">
-            <span class="cmd">execute profile_init</span>
+            <span class="cmd">execute profile_init --mobile-responsive</span>
             <h1>سید رضا رجب‌زاده</h1>
             <span class="subtitle">AI Specialist | Graphic Engine Designer | Business Automation Architect</span>
 
-            <div class="grid">
-                <div class="card full">
-                    <span class="cmd">load_module --ai --development</span>
-                    <h2><i class="fas fa-brain"></i> هوش مصنوعی و معماری داده</h2>
-                    <div style="margin-bottom: 12px;">
-                        <span class="tag">Harvard CS50 AI</span>
-                        <span class="tag">Harvard CS50P (Python)</span>
-                        <span class="tag">Deep Learning</span>
-                        <span class="tag">MATLAB Analytics</span>
-                        <span class="tag">SQL Databases</span>
-                    </div>
-                    <p style="font-size: 0.8rem; color: var(--text-dim);">
-                        متخصص در پیاده‌سازی مدل‌های یادگیری عمیق و اتوماسیون فرآیندهای پیچیده با محوریت تحلیل داده‌های فنی و مهندسی.
-                    </p>
+            <div class="elite-header">
+                <div class="harvard-title"><i class="fas fa-graduation-cap"></i> مدارک رسمی HARVARD UNIVERSITY</div>
+                <div style="margin-top: 12px;">
+                    <div class="tag">CS50 AI: Artificial Intelligence</div>
+                    <div class="tag">CS50P: Python Programming</div>
+                    <div class="tag">CS50x: Computer Science</div>
                 </div>
+                <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 10px;">تخصص تایید شده در پیاده‌سازی مدل‌های هوش مصنوعی و اتوماسیون فرآیندهای پیچیده صنعتی.</p>
+            </div>
 
+            <div class="grid">
                 <div class="card">
                     <span class="cmd">run automation_scripts</span>
-                    <h2><i class="fas fa-network-wired"></i> معماری اتوماسیون (n8n)</h2>
+                    <h2><i class="fas fa-network-wired"></i> اتوماسیون (n8n & AI)</h2>
                     <div class="project-item">
                         <strong>AI Lead & CRM Engine</strong>
-                        <p>سیستم هوشمند جذب مشتری با پردازش NLP و OpenAI.</p>
+                        <p>سیستم هوشمند جذب مشتری با پردازش NLP و OpenAI در پلتفرم بله.</p>
                     </div>
                     <div class="project-item">
                         <strong>Auto-Diagnostic System</strong>
-                        <p>جریان کاری خودکار برای تحلیل داده‌های فنی و گزارش‌گیری آنی.</p>
-                    </div>
-                    <div class="project-item">
-                        <strong>Cloudflare Monitor</strong>
-                        <p>پایش پایداری سرویس‌های ابری و مدیریت کانفیگ‌های VPN.</p>
+                        <p>تحلیل خودکار داده‌های سخت‌افزاری و صدور گزارش‌های فنی آنی.</p>
                     </div>
                 </div>
 
@@ -170,11 +180,7 @@
                     </div>
                     <div class="project-item">
                         <strong>Identity Design</strong>
-                        <p>طراحی هویت بصری و رابط کاربری (UI) با رویکرد مینیمالیسم.</p>
-                    </div>
-                    <div class="project-item">
-                        <strong>Adobe Illustrator/Photoshop</strong>
-                        <p>اجرای پروژه‌های پیچیده وکتور و روتوش تخصصی تصاویر.</p>
+                        <p>طراحی هویت بصری و رابط کاربری (UI) با رویکرد مینیمالیسم مدرن.</p>
                     </div>
                 </div>
 
@@ -183,34 +189,32 @@
                     <h2><i class="fas fa-shield-alt"></i> مدیریت عملیات و استمرار سیستم</h2>
                     <div class="exp-grid">
                         <div class="project-item">
-                            <strong>پایش زیرساخت | مرکز کامیاب</strong>
-                            <p>تضمین پایداری سیستم‌های حیاتی و مانیتورینگ داده‌ها در شرایط بحرانی.</p>
+                            <strong>مدیریت زیرساخت | مرکز کامیابی</strong>
+                            <p>تضمین پایداری سیستم‌های حیاتی و مانیتورینگ استراتژیک در شرایط بحرانی.</p>
                         </div>
                         <div class="project-item">
                             <strong>عیب‌یابی تخصصی | تکنو هلث</strong>
-                            <p>عیب‌یابی تخصصی (Troubleshooting) بردهای الکترونیکی و تجهیزات دقیق.</p>
+                            <p>عیب‌یابی تخصصی بردهای الکترونیکی و تجهیزات دقیق با استانداردهای مهندسی.</p>
                         </div>
                         <div class="project-item">
                             <strong>مدیریت پروژه‌های دیجیتال</strong>
-                            <p>رهبری تیم‌های خلاق و طراحی استراتژی برندینگ برای کسب‌وکارها.</p>
+                            <p>رهبری تیم‌های خلاق و طراحی سیستم‌های برندینگ و اتوماسیون محتوا.</p>
                         </div>
                         <div class="project-item">
                             <strong>تحقیق و توسعه (R&D)</strong>
-                            <p>پیاده‌سازی متدهای نوین سنجش بیولوژیک با کمترین تداخل سیستمی.</p>
+                            <p>تحقیق بر روی متدهای نوین سنجش بیولوژیک جهت کاهش تداخل در سیستم‌های حساس.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <span class="cmd">establish_connection --secure</span>
-            <div class="contact-info" style="display: flex; flex-direction: column; gap: 10px; font-size: 0.8rem; color: var(--text-dim); margin-top: 20px; border-top: 1px solid #222; padding-top: 15px;">
-                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 10px;">
-                    <span><i class="fas fa-envelope"></i> r0j5bz0adh@gmail.com</span>
-                    <span><i class="fas fa-phone"></i> 09334994035</span>
-                </div>
+            <div class="contact-info">
+                <span><i class="fas fa-envelope"></i> r0j5bz0adh@gmail.com</span>
+                <span><i class="fas fa-phone"></i> 09334994035</span>
+                <span><i class="fas fa-map-marker-alt"></i> MASHHAD_STATION</span>
             </div>
             
-            <a href="https://ble.ir/r_j5bz_adh" class="btn"> برقراری ارتباط (BALE)</a>
+            <a href="https://ble.ir/r0j5bz0adh" class="btn">ارتباط با اپراتور در بله</a>
         </div>
     </div>
 </div>
