@@ -1,230 +1,148 @@
+‌., [2/5/2026 7:11 PM]
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رزومه هوشمند سید رضا رجب‌زاده</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>سید رضا رجب‌زاده | رزومه هوشمند</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --dark: #0f0c29;
-            --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            --bg: #000000;
+            --card-bg: #111111;
+            --accent: #007aff; /* Apple Blue */
+            --accent-2: #ff3b30; /* Energy Red */
+            --text: #ffffff;
+            --text-dim: #888888;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
 
         body {
-            margin: 0;
-            font-family: 'Tahoma', sans-serif;
-            background: var(--bg-gradient);
-            color: white;
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
-        /* پس‌زمینه متحرک */
-        .background-blobs {
+        /* پس‌زمینه نئونی ثابت (بدون لگ) */
+        body::before {
+            content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: -10%; left: -10%;
+            width: 40%; height: 40%;
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.15) 0%, transparent 70%);
             z-index: -1;
-            filter: blur(80px);
-            opacity: 0.5;
         }
 
-        .blob {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--primary);
-            border-radius: 50%;
-            animation: move 20s infinite alternate;
-        }
-
-        @keyframes move {
-            from { transform: translate(-10%, -10%); }
-            to { transform: translate(100%, 100%); }
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* هدر شیشه‌ای */
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to left, #fff, var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* کارت‌های مهارت */
-        .section-title {
-            margin: 40px 0 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.5rem;
-        }
-
-        .skills-grid {
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(100px, auto);
             gap: 15px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .skill-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid #222;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
-        .skill-card:hover {
-            transform: translateY(-10px);
-            background: var(--primary);
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.4);
-        }
+        .card:hover { transform: scale(1.02); border-color: #333; }
 
-        .skill-card i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
+        /* پروفایل - بزرگ */
+        .profile-card { grid-column: span 4; display: flex; align-items: center; gap: 20px; background: linear-gradient(145deg, #111, #1a1a1a); }
+        .avatar { width: 80px; height: 80px; background: var(--accent); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+
+        /* تخصص‌ها - ۲ ستونه */
+        .skills-card { grid-column: span 2; grid-row: span 2; }
+        .skill-tag { display: inline-block; padding: 6px 12px; background: #222; border-radius: 10px; margin: 4px; font-size: 0.85rem; border: 1px solid #333; }
+
+        /* کارت دانشجویی و رشته - مدرن */
+        .info-card { grid-column: span 2; background: linear-gradient(to bottom right, #111, #001a33); border-right: 4px solid var(--accent); }
+        .id-badge { font-family: monospace; color: var(--accent); font-size: 1.2rem; letter-spacing: 2px; }
 
         /* پروژه‌ها */
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 25px;
-            overflow: hidden;
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.4s;
-        }
+        .project-card { grid-column: span 2; height: 180px; background-size: cover; background-position: center; display: flex; align-items: flex-end; }
+        .project-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
+        .project-title { position: relative; z-index: 1; font-weight: bold; }
 
-        .project-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+        /* دکمه تماس نئونی */
+        .contact-card { grid-column: span 4; background: var(--accent); color: white; text-align: center; font-weight: bold; text-decoration: none; font-size: 1.2rem; }
 
-        .project-img {
-            width: 100%;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
+        h2 { font-size: 1.5rem; margin-bottom: 5px; }
+        p { color: var(--text-dim); font-size: 0.9rem; }
 
-        .project-info {
-            padding: 20px;
-        }
-
-/* دکمه تماس */
-        .contact-btn {
-            display: block;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 50px;
-            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
-            transition: 0.3s;
-        }
-
-        .contact-btn:hover {
-            transform: scale(1.02);
-            filter: brightness(1.1);
-        }
-
+        /* ریسپانسیو برای موبایل */
         @media (max-width: 600px) {
-            header h1 { font-size: 1.8rem; }
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .profile-card, .skills-card, .info-card, .project-card, .contact-card { grid-column: span 2; }
         }
+
+        /* انیمیشن ساده بدون سنگینی */
+        .reveal { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div class="background-blobs">
-        <div class="blob"></div>
-    </div>
-
-    <div class="container">
-        <header data-aos="zoom-in">
-            <h1>سید رضا رجب‌زاده</h1>
-            <p>متخصص هوش مصنوعی و طراحی سیستم‌های هوشمند</p>
-            <div style="font-size: 0.9rem; color: var(--secondary);">مهندسی پزشکی - بیوالکترونیک</div>
-        </header>
-
-        <h3 class="section-title"><i class="fas fa-bolt"></i> توانمندی‌های فنی</h3>
-        <div class="skills-grid">
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fab fa-python"></i>
-                <div>Python</div>
-            </div>
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-robot"></i>
-                <div>n8n AI</div>
-            </div>
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-paint-brush"></i>
-                <div>UI/UX</div>
-            </div>
-            <div class="skill-card" data-aos="fade-up" data-aos-delay="400">
-                <i class="fas fa-chart-line"></i>
-                <div>Data Analysis</div>
+‌., [2/5/2026 7:11 PM]
+<div class="bento-grid">
+        <div class="card profile-card reveal">
+            <div class="avatar"><i class="fas fa-user-astronaut"></i></div>
+            <div>
+                <h2>سید رضا رجب‌زاده</h2>
+                <p>مهندسی انرژی | متخصص سیستم‌های هوشمند</p>
             </div>
         </div>
 
-        <h3 class="section-title"><i class="fas fa-briefcase"></i> پروژه‌های برتر</h3>
-        
-        <div class="project-card" data-aos="fade-right">
-            <div class="project-img" style="background-image: url('https://placehold.co/600x300/1a1a2e/ffffff?text=AI+Automation')"></div>
-            <div class="project-info">
-                <h4>اتوماسیون هوشمند سازمانی</h4>
-                <p>پیاده‌سازی جریان‌های کاری خودکار با استفاده از n8n و مدل‌های زبانی بزرگ.</p>
+        <div class="card info-card reveal" style="animation-delay: 0.1s;">
+            <p>شماره دانشجویی</p>
+            <div class="id-badge">404445749</div>
+            <div style="margin-top: 10px; font-size: 0.8rem; color: #555;">UNIVERSITY OF TECHNOLOGY</div>
+        </div>
+
+        <div class="card skills-card reveal" style="animation-delay: 0.2s;">
+            <h3><i class="fas fa-code-branch" style="color: var(--accent);"></i> مهارت‌های کلیدی</h3>
+            <div style="margin-top: 15px;">
+                <span class="skill-tag">Python & AI</span>
+                <span class="skill-tag">Energy Engineering</span>
+                <span class="skill-tag">n8n Automation</span>
+                <span class="skill-tag">Cloudflare & VPN</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">MATLAB</span>
             </div>
         </div>
 
-        <div class="project-card" data-aos="fade-left">
-            <div class="project-img" style="background-image: url('https://placehold.co/600x300/e94560/ffffff?text=Medical+Design')"></div>
-            <div class="project-info">
-                <h4>سیستم‌های بیوالکترونیک</h4>
-                <p>طراحی و تحلیل مدارهای پردازش سیگنال‌های حیاتی.</p>
-            </div>
+        <div class="card project-card reveal" style="background-image: url('https://placehold.co/400x200/111/444?text=Smart+Energy'); animation-delay: 0.3s;">
+            <div class="project-title">بهینه‌سازی انرژی با AI</div>
         </div>
 
-        <a href="https://ble.ir/r_j5bz_adh" class="contact-btn">
-            <i class="fas fa-paper-plane"></i> شروع همکاری در بله
+        <div class="card project-card reveal" style="background-image: url('https://placehold.co/400x200/111/444?text=Automation'); animation-delay: 0.4s;">
+            <div class="project-title">اتوماسیون هوشمند سازمانی</div>
+        </div>
+
+        <div class="card info-card reveal" style="animation-delay: 0.5s; background: linear-gradient(145deg, #111, #1a0a0a); border-right-color: var(--accent-2);">
+            <p>تجهیزات و تخصص جانبی</p>
+            <h4 style="margin-top: 5px;">Toyota Hilux 2007 System Analysis</h4>
+            <p style="font-size: 0.75rem;">Mechanical & Electrical Troubleshooting</p>
+        </div>
+
+        <a href="https://ble.ir/YOUR_ID" class="card contact-card reveal" style="animation-delay: 0.6s;">
+            <i class="fab fa-paper-plane"></i> شروع گفتگو در بله
         </a>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 1000,
-            once: true
+        // جلوگیری از لگ اسکرول با حذف ایونت‌های سنگین
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("Resume Loaded Successfully");
         });
     </script>
 </body>
