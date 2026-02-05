@@ -1,149 +1,220 @@
-‌., [2/5/2026 7:11 PM]
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سید رضا رجب‌زاده | رزومه هوشمند</title>
+    <title>REZA_SYSTEM_OS v2.0</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg: #000000;
-            --card-bg: #111111;
-            --accent: #007aff; /* Apple Blue */
-            --accent-2: #ff3b30; /* Energy Red */
-            --text: #ffffff;
-            --text-dim: #888888;
+            --neon-green: #00ff41;
+            --neon-blue: #00d2ff;
+            --terminal-bg: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --text-color: #d1d1d1;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Courier New', Courier, monospace; }
 
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--terminal-bg);
+            color: var(--text-color);
             padding: 20px;
             overflow-x: hidden;
+            background-image: linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
-        /* پس‌زمینه نئونی ثابت (بدون لگ) */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -10%; left: -10%;
-            width: 40%; height: 40%;
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.15) 0%, transparent 70%);
-            z-index: -1;
+        .container { max-width: 900px; margin: 0 auto; }
+
+        /* Terminal Header */
+        .terminal-header {
+            background: #333;
+            padding: 10px 20px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #444;
         }
 
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(100px, auto);
-            gap: 15px;
-            max-width: 900px;
-            margin: 0 auto;
+        .dots { display: flex; gap: 8px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+
+        /* Main Console */
+        .console {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid #444;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
         }
 
+        .command { color: var(--neon-green); margin-bottom: 5px; }
+        .command::before { content: "reza@system:~$ "; }
+
+        h1 { font-size: 2rem; color: #fff; text-shadow: 0 0 10px var(--neon-green); margin-bottom: 10px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 30px; }
+
+        /* Power Cards */
         .card {
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 24px;
-            border: 1px solid #222;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 12px;
+            transition: 0.3s;
             position: relative;
-            overflow: hidden;
+        }
+        .card:hover { border-color: var(--neon-blue); transform: scale(1.02); }
+        .card h3 { color: var(--neon-blue); margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+
+        /* Priority Tags */
+        .tag {
+            display: inline-block;
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--neon-blue);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            margin: 3px;
+            border: 1px solid rgba(0, 210, 255, 0.3);
         }
 
-        .card:hover { transform: scale(1.02); border-color: #333; }
+        .ai-tag { color: var(--neon-green); border-color: var(--neon-green); background: rgba(0, 255, 65, 0.05); }
 
-        /* پروفایل - بزرگ */
-        .profile-card { grid-column: span 4; display: flex; align-items: center; gap: 20px; background: linear-gradient(145deg, #111, #1a1a1a); }
-        .avatar { width: 80px; height: 80px; background: var(--accent); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        /* Experience Items */
+        .item { margin-bottom: 12px; font-size: 0.85rem; border-right: 2px solid #444; padding-right: 10px; }
+        .item strong { color: #fff; display: block; }
 
-        /* تخصص‌ها - ۲ ستونه */
-        .skills-card { grid-column: span 2; grid-row: span 2; }
-        .skill-tag { display: inline-block; padding: 6px 12px; background: #222; border-radius: 10px; margin: 4px; font-size: 0.85rem; border: 1px solid #333; }
+        /* Status Bars */
+        .status-container { margin-top: 5px; height: 6px; background: #333; border-radius: 3px; overflow: hidden; }
+        .status-fill { height: 100%; background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); }
 
-        /* کارت دانشجویی و رشته - مدرن */
-        .info-card { grid-column: span 2; background: linear-gradient(to bottom right, #111, #001a33); border-right: 4px solid var(--accent); }
-        .id-badge { font-family: monospace; color: var(--accent); font-size: 1.2rem; letter-spacing: 2px; }
+        .full-width { grid-column: span 2; }
 
-        /* پروژه‌ها */
-        .project-card { grid-column: span 2; height: 180px; background-size: cover; background-position: center; display: flex; align-items: flex-end; }
-        .project-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
-        .project-title { position: relative; z-index: 1; font-weight: bold; }
-
-        /* دکمه تماس نئونی */
-        .contact-card { grid-column: span 4; background: var(--accent); color: white; text-align: center; font-weight: bold; text-decoration: none; font-size: 1.2rem; }
-
-        h2 { font-size: 1.5rem; margin-bottom: 5px; }
-        p { color: var(--text-dim); font-size: 0.9rem; }
-
-        /* ریسپانسیو برای موبایل */
-        @media (max-width: 600px) {
-            .bento-grid { grid-template-columns: repeat(2, 1fr); }
-            .profile-card, .skills-card, .info-card, .project-card, .contact-card { grid-column: span 2; }
+        /* Bottom Button */
+        .btn-connect {
+            display: block;
+            text-align: center;
+            background: var(--neon-green);
+            color: #000;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* انیمیشن ساده بدون سنگینی */
-        .reveal { animation: fadeIn 0.8s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
     </style>
 </head>
 <body>
 
-‌., [2/5/2026 7:11 PM]
-<div class="bento-grid">
-        <div class="card profile-card reveal">
-            <div class="avatar"><i class="fas fa-user-astronaut"></i></div>
-            <div>
-                <h2>سید رضا رجب‌زاده</h2>
-                <p>مهندسی انرژی | متخصص سیستم‌های هوشمند</p>
-            </div>
+<div class="container">
+    <div class="terminal-header">
+        <div class="dots">
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
         </div>
-
-        <div class="card info-card reveal" style="animation-delay: 0.1s;">
-            <p>شماره دانشجویی</p>
-            <div class="id-badge">404445749</div>
-            <div style="margin-top: 10px; font-size: 0.8rem; color: #555;">UNIVERSITY OF TECHNOLOGY</div>
-        </div>
-
-        <div class="card skills-card reveal" style="animation-delay: 0.2s;">
-            <h3><i class="fas fa-code-branch" style="color: var(--accent);"></i> مهارت‌های کلیدی</h3>
-            <div style="margin-top: 15px;">
-                <span class="skill-tag">Python & AI</span>
-                <span class="skill-tag">Energy Engineering</span>
-                <span class="skill-tag">n8n Automation</span>
-                <span class="skill-tag">Cloudflare & VPN</span>
-                <span class="skill-tag">UI/UX Design</span>
-                <span class="skill-tag">MATLAB</span>
-            </div>
-        </div>
-
-        <div class="card project-card reveal" style="background-image: url('https://placehold.co/400x200/111/444?text=Smart+Energy'); animation-delay: 0.3s;">
-            <div class="project-title">بهینه‌سازی انرژی با AI</div>
-        </div>
-
-        <div class="card project-card reveal" style="background-image: url('https://placehold.co/400x200/111/444?text=Automation'); animation-delay: 0.4s;">
-            <div class="project-title">اتوماسیون هوشمند سازمانی</div>
-        </div>
-
-        <div class="card info-card reveal" style="animation-delay: 0.5s; background: linear-gradient(145deg, #111, #1a0a0a); border-right-color: var(--accent-2);">
-            <p>تجهیزات و تخصص جانبی</p>
-            <h4 style="margin-top: 5px;">Toyota Hilux 2007 System Analysis</h4>
-            <p style="font-size: 0.75rem;">Mechanical & Electrical Troubleshooting</p>
-        </div>
-
-        <a href="https://ble.ir/YOUR_ID" class="card contact-card reveal" style="animation-delay: 0.6s;">
-            <i class="fab fa-paper-plane"></i> شروع گفتگو در بله
-        </a>
+        <div style="font-size: 0.7rem; color: #888;">REZA_RESUME_v2.exe</div>
     </div>
 
-    <script>
-        // جلوگیری از لگ اسکرول با حذف ایونت‌های سنگین
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log("Resume Loaded Successfully");
-        });
-    </script>
+    <div class="console">
+        <div class="command">whoami</div>
+        <h1>سید رضا رجب‌زاده</h1>
+        <p style="color: #888;">[ AI Specialist | Graphic Designer | Automation Expert ]</p>
+        
+        <div class="grid">
+            <div class="card full-width">
+                <div class="command">run core_ai.sh</div>
+                <h3><i class="fas fa-microchip"></i> هوش مصنوعی و برنامه‌نویسی</h3>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="tag ai-tag">Harvard CS50 AI (Certified)</span>
+                    <span class="tag ai-tag">Harvard CS50P (Python)</span>
+                    <span class="tag ai-tag">Machine Learning</span>
+                    <span class="tag ai-tag">Deep Learning</span>
+                    <span class="tag">MATLAB Professional</span>
+                    <span class="tag">SQL & Data Analysis</span>
+                </div>
+                <div style="margin-top: 15px;">
+                    <p style="font-size: 0.8rem;">تخصص در پیاده‌سازی مدل‌های عصبی و تحلیل داده‌های پیچیده مهندسی.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="command">open creative_engine.app</div>
+                <h3><i class="fas fa-paint-brush"></i> طراحی گرافیک و تدوین</h3>
+                <div class="item">
+                    <strong>Motion Graphics</strong>
+                    <div class="status-container"><div class="status-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="item">
+                    <strong>Branding (Logo & UI)</strong>
+                    <div class="status-container"><div class="status-fill" style="width: 85%;"></div></div>
+                </div>
+                <div class="item">
+                    <strong>After Effects & Premiere</strong>
+                </div>
+                <div class="item">
+                    <strong>Photoshop & Illustrator</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="command">start automation_service</div>
+                <h3><i class="fas fa-cogs"></i> اتوماسیون کسب‌وکار</h3>
+                <div class="item">
+                    <strong>n8n Workflow Design</strong>
+                    <p style="font-size: 0.75rem; color: #888;">خودکارسازی فرآیندهای سازمانی و اتصال پلتفرم‌ها.</p>
+                </div>
+                <div class="item">
+                    <strong>Python Custom Scripts</strong>
+                    <p style="font-size: 0.75rem; color: #888;">توسعه اسکریپت‌های اختصاصی برای مدیریت داده.</p>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div class="command">cat legacy_experience.log</div>
+                <h3><i class="fas fa-history"></i> سوابق اجرایی و فنی</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div class="item">
+                        <strong>بیمارستان کامیاب مشهد</strong>
+                        <p>مدیریت و مانیتورینگ تجهیزات پزشکی حیاتی.</p>
+                    </div>
+                    <div class="item">
+                        <strong>شرکت تکنو هلث</strong>
+                        <p>تعمیرات تخصصی اینسترومنت‌های بیمارستانی.</p>
+
+</div>
+                    <div class="item">
+                        <strong>پروژه گلوکومتر</strong>
+                        <p>تحقیق و توسعه سیستم‌های سنجش قند خون غیرتهاجمی.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="command">initiate_contact --platform="ble"</div>
+        <a href="https://ble.ir/r0j5bz0adh" class="btn-connect">
+            <i class="fab fa-paper-plane"></i> شروع همکاری (اتصال به سیستم)
+        </a>
+    </div>
+</div>
+
+<script>
+    console.log("System Initialized...");
+    // افکت تایپ ساده برای تیترها در آینده قابل اضافه شدن است
+</script>
+
 </body>
 </html>
