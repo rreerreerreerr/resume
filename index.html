@@ -1,0 +1,143 @@
+‌., [2/5/2026 6:43 PM]
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رزومه هوشمند سید رضا رجب‌زاده</title>
+    <script src="https://tapi.bale.ai/static/js/bale-web-app.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.8);
+            --accent: #00d2ff;
+            --dark: #1a1a2e;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0; padding: 15px; color: var(--dark);
+        }
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+        }
+        .profile-section { text-align: center; }
+        .name { font-size: 22px; font-weight: 800; margin: 10px 0 5px; color: #0f3460; }
+        .tagline { font-size: 14px; color: #533483; margin-bottom: 15px; }
+
+        /* استایل آیکون‌ها و مهارت‌ها */
+        .skill-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .skill-item {
+            display: flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,0.5);
+            padding: 8px 12px; border-radius: 12px; font-size: 13px;
+        }
+        i { width: 18px; height: 18px; color: #e94560; }
+
+        /* اسلایدر مدرن */
+        .portfolio-track {
+            display: flex; overflow-x: auto; gap: 15px;
+            padding: 10px 0; scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .portfolio-track::-webkit-scrollbar { display: none; }
+        .project-card {
+            min-width: 260px; scroll-snap-align: start;
+            border-radius: 15px; overflow: hidden; background: #fff;
+        }
+        .project-card img { width: 100%; height: 140px; object-fit: cover; }
+        .project-info { padding: 10px; font-size: 13px; font-weight: bold; }
+
+        /* دکمه اکشن */
+        .btn-call {
+            width: 100%; background: #0f3460; color: white; border: none;
+            padding: 15px; border-radius: 15px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 4px 15px rgba(15, 52, 96, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card profile-section">
+        <div class="name">سید رضا رجب‌زاده</div>
+        <div class="tagline">متخصص هوش مصنوعی و طراحی سیستم‌های هوشمند</div>
+        <div style="font-size: 12px; color: #666;">
+            <i data-lucide="graduation-cap" style="vertical-align: middle;"></i> 
+            مهندسی پزشکی - بیوالکترونیک
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <h3 style="font-size: 16px; margin-bottom: 15px;">
+            <i data-lucide="cpu" style="color: #00d2ff;"></i> توانمندی‌های فنی
+        </h3>
+        <div class="skill-group">
+            <div class="skill-item"><i data-lucide="terminal"></i> Python & MATLAB</div>
+            <div class="skill-item"><i data-lucide="workflow"></i> n8n Automation</div>
+            <div class="skill-item"><i data-lucide="layers"></i> UI/UX Design</div>
+            <div class="skill-item"><i data-lucide="video"></i> Motion Graphics</div>
+            <div class="skill-item"><i data-lucide="database"></i> SQL & Data Analysis</div>
+            <div class="skill-item"><i data-lucide="sparkles"></i> AI/ML Solutions</div>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <h3 style="font-size: 16px;">
+            <i data-lucide="briefcase"></i> نمونه پروژه‌ها
+</h3>
+        <div class="portfolio-track">
+            <div class="project-card">
+                <img src="https://placehold.co/400x200/1a1a2e/ffffff?text=AI+Automation" alt="Automation">
+                <div class="project-info">پیاده‌سازی اتوماسیون هوشمند سازمانی</div>
+            </div>
+            <div class="project-card">
+                <img src="https://placehold.co/400x200/e94560/ffffff?text=Graphic+Design" alt="Design">
+                <div class="project-info">هویت بصری و طراحی برندینگ</div>
+            </div>
+            <div class="project-card">
+                <img src="https://placehold.co/400x200/0f3460/ffffff?text=Medical+Equip" alt="Medical">
+                <div class="project-info">طراحی سیستم‌های بیوالکترونیک</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-call" onclick="contactMe()">
+        <i data-lucide="send" style="color: white;"></i>
+        درخواست همکاری و تماس
+    </button>
+
+    <script>
+        // فعال‌سازی آیکون‌ها
+        lucide.createIcons();
+
+        const bale = window.Bale;
+        bale.expand();
+
+        function contactMe() {
+            const webhookUrl = 'آدرس_وب‌هوک_N8N_شما';
+            
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    from: 'MiniApp_Resume',
+                    user: bale.initDataUnsafe.user.first_name || 'Visitor'
+                })
+            }).then(() => {
+                bale.showPopup({
+                    title: 'ارسال شد',
+                    message: 'پیام شما دریافت شد. در اسرع وقت با شما تماس می‌گیرم.',
+                    buttons: [{type: 'ok', text: 'فهمیدم'}]
+                });
+            });
+        }
+    </script>
+</body>
+</html>
