@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REZA_SYSTEM_v4.0 | Elite Portfolio</title>
+    <title>REZA_SYSTEM_v3.0 | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --terminal-green: #00ff41;
             --terminal-blue: #00d2ff;
-            --harvard-gold: #ffcc00;
             --bg-color: #050505;
-            --panel-bg: rgba(15, 15, 20, 0.98);
+            --panel-bg: rgba(20, 20, 25, 0.95);
             --text-dim: #8892b0;
             --text-bright: #ccd6f6;
         }
@@ -29,12 +28,13 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
 
+        /* Terminal Window Frame */
         .terminal {
             background: var(--panel-bg);
             border: 1px solid #333;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 20px rgba(0, 210, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 15px rgba(0, 255, 65, 0.1);
         }
 
         .terminal-bar {
@@ -42,181 +42,196 @@
             padding: 12px 20px;
             display: flex;
             align-items: center;
+            gap: 10px;
             border-bottom: 1px solid #333;
         }
 
-        .dot { width: 12px; height: 12px; border-radius: 50%; margin-left: 8px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
 
         .content { padding: 30px; }
 
+        /* Commands & Text */
         .cmd { color: var(--terminal-green); font-weight: bold; margin-bottom: 10px; display: block; }
         .cmd::before { content: "reza@root:~$ "; }
 
-        h1 { font-size: 2.8rem; margin-bottom: 5px; color: #fff; text-shadow: 0 0 15px var(--terminal-blue); }
-        .subtitle { color: var(--terminal-blue); font-size: 1rem; margin-bottom: 30px; display: block; letter-spacing: 1px; }
+        h1 { font-size: 2.5rem; margin-bottom: 5px; color: #fff; text-shadow: 0 0 10px var(--terminal-blue); }
+        .subtitle { color: var(--terminal-blue); font-size: 0.9rem; margin-bottom: 30px; display: block; }
 
-        /* ELITE SECTION - HARVARD BOLD */
-        .elite-box {
-            background: rgba(255, 204, 0, 0.05);
-            border: 2px solid var(--harvard-gold);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 0 30px rgba(255, 204, 0, 0.15);
-            position: relative;
-        }
-        .elite-box::before {
-            content: "ELITE_STATUS: VERIFIED";
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: var(--harvard-gold);
-            color: #000;
-            font-size: 0.7rem;
-            padding: 2px 10px;
-            font-weight: bold;
-            border-radius: 4px;
-        }
-
-        .harvard-item {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: var(--harvard-gold);
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-        .harvard-sub { font-size: 0.85rem; color: #aaa; margin-right: 40px; margin-bottom: 15px; display: block; }
-
-        /* Grid */
+        /* Grid System */
         .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid #222; border-radius: 15px; padding: 20px; transition: 0.3s; }
-        .card:hover { border-color: var(--terminal-blue); transform: translateY(-5px); }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222;
+            border-radius: 15px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--terminal-blue); background: rgba(0, 210, 255, 0.05); }
+
         .full { grid-column: span 2; }
 
-        h2 { font-size: 1.3rem; margin-bottom: 20px; color: var(--terminal-blue); border-bottom: 1px solid #333; padding-bottom: 10px; }
+        h2 { font-size: 1.3rem; margin-bottom: 15px; color: var(--terminal-blue); display: flex; align-items: center; gap: 10px; }
 
-/* Skill Tags */
-        .tag { display: inline-block; border: 1px solid var(--terminal-green); color: var(--terminal-green); padding: 3px 10px; border-radius: 5px; font-size: 0.8rem; margin: 4px; transition: 0.3s; }
-        .tag:hover { background: var(--terminal-green); color: #000; }
+        /* Items Styling */
+        .tag {
+            display: inline-block;
+            border: 1px solid var(--terminal-green);
+            color: var(--terminal-green);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 4px;
+        }
 
-        /* Project & Experience items */
-        .item { margin-bottom: 25px; padding-right: 15px; border-right: 2px solid #333; }
-        .item:hover { border-right-color: var(--terminal-blue); }
-        .item strong { color: #fff; font-size: 1.05rem; display: block; }
-        .item p { font-size: 0.85rem; color: var(--text-dim); margin-top: 5px; text-align: justify; }
+        .project-item { margin-bottom: 20px; padding-right: 15px; border-right: 2px solid #333; }
+        .project-item:hover { border-right-color: var(--terminal-green); }
+        .project-item strong { color: #fff; font-size: 1rem; display: block; }
+        .project-item p { font-size: 0.85rem; color: var(--text-dim); margin-top: 5px; }
+
+        /* Experience Section Expanded */
+        .exp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
         /* Contact Button */
         .btn {
-            display: block; width: 100%; padding: 20px; background: var(--terminal-green); color: #000;
-            text-align: center; text-decoration: none; font-weight: bold; border-radius: 8px; margin-top: 30px;
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 2px;
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--terminal-green);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-top: 30px;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
-        .btn:hover { box-shadow: 0 0 30px var(--terminal-green); filter: brightness(1.1); }
+        .btn:hover { box-shadow: 0 0 20px var(--terminal-green); transform: scale(1.01); }
 
-        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } .full { grid-column: span 1; } }
+@media (max-width: 768px) {
+            .grid, .exp-grid { grid-template-columns: 1fr; }
+            .full { grid-column: span 1; }
+        }
+
+        /* Scanline Effect */
+        .scanline {
+            width: 100%; height: 2px;
+            background: rgba(0, 255, 65, 0.1);
+            position: fixed; top: 0; left: 0;
+            pointer-events: none;
+            animation: scan 4s linear infinite;
+        }
+        @keyframes scan { 0% { top: -5%; } 100% { top: 100%; } }
     </style>
 </head>
 <body>
 
+<div class="scanline"></div>
+
 <div class="container">
     <div class="terminal">
         <div class="terminal-bar">
-            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+            <div class="dot red"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <span style="font-size: 0.7rem; color: #555; margin-right: auto;">root@reza-mainframe: ~</span>
         </div>
 
         <div class="content">
-            <span class="cmd">whoami --advanced</span>
+            <span class="cmd">execute profile_init</span>
             <h1>سید رضا رجب‌زاده</h1>
-            <span class="subtitle">AI & Automation Architect | Visual System Engineer</span>
-
-            <div class="elite-box">
-                <span class="cmd" style="color: var(--harvard-gold);">fetch --credentials --source="harvard"</span>
-                
-                <div class="harvard-item">
-                    <i class="fas fa-certificate"></i> Harvard CS50 AI (Artificial Intelligence)
-                </div>
-                <span class="harvard-sub">تخصص در پیاده‌سازی مدل‌های هوش مصنوعی، یادگیری ماشین و شبکه‌های عصبی.</span>
-
-                <div class="harvard-item">
-                    <i class="fas fa-certificate"></i> Harvard CS50P (Python Programming)
-                </div>
-                <span class="harvard-sub">توسعه الگوریتم‌های پیچیده و اسکریپت‌های اتوماسیون سطح بالا با پایتون.</span>
-
-                <div class="harvard-item" style="font-size: 1.1rem; opacity: 0.9;">
-                    <i class="fas fa-university"></i> Harvard CS50x (Computer Science)
-                </div>
-                <span class="harvard-sub">مبانی مهندسی نرم‌افزار، ساختار داده‌ها و مدیریت الگوریتم‌ها.</span>
-            </div>
+            <span class="subtitle">AI Specialist | Graphic Engine Designer | Business Automation Architect</span>
 
             <div class="grid">
-                <div class="card">
-                    <span class="cmd">init automation_engine</span>
-                    <h2><i class="fas fa-robot"></i> اتوماسیون (n8n & Python)</h2>
-                    <div class="item">
-                        <strong>AI-Powered Lead & CRM</strong>
-                        <p>اتصال OpenAI به پلتفرم‌های ارتباطی (بله/تلگرام) جهت تحلیل هوشمند رفتار مشتری و طبقه‌بندی خودکار داده‌ها.</p>
-                    </div>
-                    <div class="item">
-                        <strong>Business Workflow Architecture</strong>
-                        <p>طراحی جریان‌های کاری n8n برای خودکارسازی گزارش‌گیری فنی و مانیتورینگ ۲۴/۷ زیرساخت‌های ابری.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <span class="cmd">load creative_modules</span>
-                    <h2><i class="fas fa-paint-brush"></i> طراحی و مهندسی بصری</h2>
-                    <div class="item">
-                        <strong>Motion Graphics (After Effects)</strong>
-                        <p>خلق جلوه‌های بصری متحرک و ویدیوهای صنعتی-تبلیغاتی با استانداردهای مدرن گرافیکی.</p>
-
-</div>
-                    <div class="item">
-                        <strong>UI/UX & Branding</strong>
-                        <p>طراحی رابط کاربری سیستم‌های هوشمند و تدوین هویت بصری یکپارچه برای برندها.</p>
-                    </div>
-                </div>
-
                 <div class="card full">
-                    <span class="cmd">access management_logs</span>
-                    <h2><i class="fas fa-shield-alt"></i> سوابق اجرایی و مدیریت عملیات سیستم</h2>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                        <div class="item">
-                            <strong>مدیریت پایداری زیرساخت | مرکز کامیابی مشهد</strong>
-                            <p>تضمین پایداری (Uptime) و مانیتورینگ استراتژیک سیستم‌های حیاتی در محیط‌های عملیاتی High-Pressure.</p>
-                        </div>
-                        <div class="item">
-                            <strong>عیب‌یابی تخصصی سیستم‌های دقیق | تکنو هلث</strong>
-                            <p>تحلیل نقص فنی و Troubleshooting بردهای الکترونیکی و سیستم‌های مکانیکی با دقت مهندسی بالا.</p>
-                        </div>
-                        <div class="item">
-                            <strong>رهبری پروژه‌های دیجیتال | Creative Direction</strong>
-                            <p>مدیریت تیم‌های فریلنسری برای پیاده‌سازی وب‌سایت‌ها و سیستم‌های اتوماسیون محتوا.</p>
-                        </div>
+                    <span class="cmd">load_module --ai --development</span>
+                    <h2><i class="fas fa-brain"></i> هوش مصنوعی و معماری داده</h2>
+                    <div style="margin-bottom: 15px;">
+                        <span class="tag">Harvard CS50 AI</span>
+                        <span class="tag">Harvard CS50P (Python)</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">MATLAB Analytics</span>
+                        <span class="tag">SQL Databases</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-dim);">
+                        متخصص در پیاده‌سازی مدل‌های یادگیری عمیق و اتوماسیون فرآیندهای پیچیده با محوریت تحلیل داده‌های فنی و مهندسی.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="cmd">run automation_scripts</span>
+                    <h2><i class="fas fa-network-wired"></i> معماری اتوماسیون (n8n)</h2>
+                    <div class="project-item">
+                        <strong>AI Lead & CRM Engine</strong>
+                        <p>سیستم هوشمند جذب و طبقه‌بندی مشتریان با پردازش زبان طبیعی (NLP) و OpenAI.</p>
+                    </div>
+                    <div class="project-item">
+                        <strong>Auto-Diagnostic System</strong>
+                        <p>جریان کاری خودکار برای تحلیل داده‌های سخت‌افزاری و صدور گزارش‌های عیب‌یابی آنی.</p>
+                    </div>
+                    <div class="project-item">
+                        <strong>Cloudflare Monitor</strong>
+                        <p>اتوماسیون پایش پایداری سرویس‌های ابری و مدیریت کانفیگ‌های VPN.</p>
                     </div>
                 </div>
 
-                <div class="card full">
-                    <span class="cmd">list --all-skills</span>
-                    <div style="text-align: center;">
-                        <span class="tag">Deep Learning</span> <span class="tag">PyTorch</span>
-                        <span class="tag">n8n Expert</span> <span class="tag">Adobe Premiere</span>
-                        <span class="tag">Cloudflare/VPN Config</span> <span class="tag">SQL</span>
-                        <span class="tag">MATLAB</span> <span class="tag">UI/UX Design</span>
+                <div class="card">
+                    <span class="cmd">open creative_suite</span>
+                    <h2><i class="fas fa-palette"></i> طراحی و مهندسی بصری</h2>
+                    <div class="project-item">
+                        <strong>Motion Graphics & Editing</strong>
+                        <p>تسلط کامل بر After Effects و Premiere برای تولید محتوای تبلیغاتی داینامیک.</p>
+                    </div>
+                    <div class="project-item">
+                        <strong>Identity Design</strong>
+                        <p>طراحی هویت بصری، لوگو و رابط کاربری (UI) با رویکرد مینیمالیسم مدرن.</p>
+                    </div>
+                    <div class="project-item">
+                        <strong>Adobe Illustrator/Photoshop</strong>
+                        <p>اجرای پروژه‌های پیچیده وکتور و روتوش تخصصی تصاویر.</p>
+                    </div>
+                </div>
+
+<div class="card full">
+                    <span class="cmd">cat operational_logs.txt</span>
+                    <h2><i class="fas fa-shield-alt"></i> مدیریت عملیات و استمرار سیستم</h2>
+                    <div class="exp-grid">
+                        <div class="project-item">
+                            <strong>پایش و مدیریت زیرساخت | مرکز درمانی کامیاب</strong>
+                            <p>تضمین پایداری سیستم‌های حیاتی، مانیتورینگ استراتژیک سخت‌افزارها و مدیریت داده‌های فنی در شرایط بحرانی.</p>
+                        </div>
+                        <div class="project-item">
+                            <strong>تحلیل و عیب‌یابی سیستم‌های دقیق | تکنو هلث</strong>
+                            <p>عیب‌یابی تخصصی (Troubleshooting) بردهای الکترونیکی و سیستم‌های مکانیکی پیشرفته با دقت میکرونی.</p>
+                        </div>
+                        <div class="project-item">
+                            <strong>مدیریت پروژه‌های دیجیتال | Freelance</strong>
+                            <p>رهبری تیم‌های خلاق، طراحی استراتژی برندینگ و تحویل سیستم‌های نرم‌افزاری بر پایه نیاز مشتری.</p>
+                        </div>
+                        <div class="project-item">
+                            <strong>توسعه سیستم‌های سنجش (R&D)</strong>
+                            <p>تحقیق و پیاده‌سازی متدهای نوین برای اندازه‌گیری پارامترهای بیولوژیک با کمترین تداخل سیستمی.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <a href="https://ble.ir/r0j5bz0adh" class="btn">اتصال به اپراتور (BALE)</a>
+            <span class="cmd">establish_connection --secure</span>
+            <div class="contact-info" style="display: flex; justify-content: space-around; font-size: 0.8rem; color: var(--text-dim); margin-top: 20px;">
+                <span><i class="fas fa-envelope"></i> r0j5bz0adh@gmail.com</span>
+                <span><i class="fas fa-phone"></i> 09334994035</span>
+                <span><i class="fas fa-map-marker-alt"></i> MASHHAD_STATION</span>
+            </div>
+            
+            <a href="https://ble.ir/r0j5bz0adh" class="btn">ایجاد ارتباط با اپراتور (BALE)</a>
         </div>
     </div>
 </div>
 
 <script>
-    console.log("SYSTEM_READY: Elite credentials verified. Welcome, Agent.");
+    console.log("REZA_SYSTEM: Boot sequence complete. All modules active.");
 </script>
 
 </body>
